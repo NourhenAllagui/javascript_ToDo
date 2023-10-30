@@ -51,6 +51,9 @@ form input {
   padding: 10px 0px;
  }
 
+ li input {
+  flex: 1;
+ }
  li p {
   flex: 1;
  }
