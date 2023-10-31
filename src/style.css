@@ -49,13 +49,21 @@ form input {
   display: flex;
   align-items: center;
   padding: 10px 0px;
+  cursor: pointer;
  }
-
+li:hover {
+  background: lightblue;
+  border-radius: 5px;
+  padding: 10px 0px 10px 5px;
+}
  li input {
   flex: 1;
  }
  li p {
   flex: 1;
+ }
+ li p.done {
+  text-decoration: line-through;
  }
 
  li .todo {
@@ -69,3 +77,15 @@ form input {
   li .todo.done {
     background: #333; 
  }
+
+ button.danger {
+  background: #eb2f06;
+}
+
+button.primary {
+  background: #4a69bd;
+}
+
+button.success {
+  background: #2ed573;
+}

@@ -14,7 +14,7 @@ const todos = [
   {
     text: 'je suis une todo',
     done: false,
-    editMode: true
+    editMode: false
   },
   {
     text: 'faire du javascript',
@@ -39,19 +39,21 @@ const createTodoElement = (todo, index) => {
   const li = document.createElement('li');
   const buttonDelete = document.createElement('button');
   buttonDelete.innerHTML = 'Supprimer';
+  buttonDelete.classList.add("danger");
   buttonDelete.addEventListener('click', (event) => {
     event.stopPropagation();
     deleteTodo(index);
   })
   const buttonEdit = document.createElement('button');
   buttonEdit.innerHTML = 'Edit';
+  buttonEdit.classList.add("primary");
   buttonEdit.addEventListener('click', event => {
     event.stopPropagation();
     toggleEditeMode(index);
   })
   li.innerHTML = `
   <span class="todo ${todo.done ? 'done': ''}"></span>
-  <p>${ todo.text }</p>
+  <p class="${todo.done ? 'done': ''}">${todo.text}</p>
   `;
   li.addEventListener('click', (event) => {
     toggleTodo(index);
@@ -67,8 +69,10 @@ const createEditMode = (todo, index) => {
   input.value = todo.text;
   const buttonSave = document.createElement('button');
   buttonSave.innerHTML = 'Save';
+  buttonSave.classList.add("success");
   const buttonCancel = document.createElement('button');
    buttonCancel.innerHTML = 'Cancel';
+   buttonCancel.classList.add("danger");
   buttonCancel.addEventListener('click', (event) => {
     event.stopPropagation();
     toggleEditeMode(index);
@@ -81,10 +85,13 @@ const createEditMode = (todo, index) => {
 }
 
 const addTodo = (text) => {
+  text = text.trim(); 
+  if(text){
   todos.push({
-    text,
+    text: `${text[0].toUpperCase()}${text.slice(1)}`,
     done: false
   });
+}
   displayTodo();
 }
 
